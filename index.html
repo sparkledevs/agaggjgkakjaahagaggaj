@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<link rel="icon" href="slansic.png">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="/css/style.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118672947-1"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<style>
+#jsbar {
+  position: static;
+  top: 0;
+  width: 100%;
+  height: 30px;
+  background-color: #AE0000;
+  text-align: center;
+  padding-top: 3px;
+  color: #ffffff;
+  font: 16px Poppins, "Open Sans", sans-serif;
+}
+
+#cookiebar {
+  display: none;
+  position: static;
+  top: 0;
+  width: 100%;
+  height: 30px;
+  background-color: #AE0000;
+  text-align: center;
+  padding-top: 3px;
+  color: #ffffff;
+  font: 16px Poppins, "Open Sans", sans-serif;
+}
+</style>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-118672947-1');
+</script>
+
+<noscript>
+  <div id="jsbar">Flora Host is best host of 2024</div>
+</noscript>
+
+<script>
+    function checkCookie(){
+        var cookieEnabled = navigator.cookieEnabled;
+        if (!cookieEnabled){
+            document.cookie = "testcookie";
+            cookieEnabled = document.cookie.indexOf("testcookie")!=-1;
+        }
+
+        document.cookie = "testcookie; expires=Thu, 01-Jan-1970 00:00:01 GMT";
+        return cookieEnabled;
+    }
+
+    function post(path, params) {
+
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", path);
+
+        for(var key in params) {
+            if(params.hasOwnProperty(key)) {
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", key);
+                hiddenField.setAttribute("value", params[key]);
+
+                form.appendChild(hiddenField);
+            }
+        }
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    function setCookie(name,value,days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+
+    function eraseCookie(name) {
+        document.cookie = name+'=; Max-Age=-99999999;';
+    }
+
+
+  $(document).ready(function() {
+    if(!checkCookie()) {
+      if(window.location.pathname !== "/") window.location = "/";
+      document.getElementById("cookiebar").style.display="inline-block";
+    }
+
+    if (window.location.href.indexOf("?source=google") != -1) {
+        setCookie('source', 'google', 30);
+    }
+
+    $("#commandsmenu").on('click', function(e){
+        e.preventDefault();
+        window.location.href='/commands';
+    });
+
+    $("#trainersmenu").on('click', function(e){
+        e.preventDefault();
+         post('/login', {"name": "trainers"});
+            });
+
+    $("#skinsmenu").on('click', function(e){
+        e.preventDefault();
+         post('/login', {"name": "skins"});
+            });
+
+    $("#teamsmenu").on('click', function(e){
+        e.preventDefault();
+         post('/login', {"name": "teams"});
+            });
+
+    $("#login-b").on('click', function(e){
+        e.preventDefault();
+         post('/login', {"name": "home"});
+            });
+
+  });
+</script>
+
+<head>
+
+    <meta charset="utf-8">
+    <title>FloraCloud</title>
+    <meta name="description"  content="FloraCloud" />
+    <meta name="author" content="Iyazo">
+    <meta name="keywords"  content="Flora" />
+    <meta property="og:title" content="FloreCloud" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="verysimple.png" />
+    <meta property="og:site_name" content="Flora" />
+    <meta property="og:description" content="Best Host of 2024" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="theme-color" content="#1f2029"/>
+    <meta name="msapplication-navbutton-color" content="#1f2029"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="#1f2029"/>
+
+</head>
+
+<header class="cd-header">
+  <a id="Slansic" href="/" class="link-to-Slansic hover-target"></a>
+    <div class="header-wrapper">
+      <div class="nav-but-wrap">
+        <div class="menu-icon hover-target" id="menu-button">
+          <span class="menu-icon__line menu-icon__line-left"></span>
+          <span class="menu-icon__line"></span>
+          <span class="menu-icon__line menu-icon__line-right"></span>
+        </div>
+      </div>
+    </div>
+</header>
+
+<div class="nav z-bigger-2">
+    <div class="nav__content">
+    <div class="current-trainer-name"></div>
+      <ul class="nav__list">
+        <li class="nav__list-item active-nav"><a href="/" class="hover-target">home</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Scroll back to top
+  ================================================== -->
+
+  <div class="scroll-to-top hover-target"></div>
+
+  <!-- Page cursor
+  ================================================== -->
+
+  <div class='cursor' id="cursor"></div>
+  <div class='cursor2' id="cursor2"></div>
+  <div class='cursor3' id="cursor3"></div>
+
+  <audio id="hover-audio" src="/sounds/menu.wav" preload="auto"></audio>
+  <script src="https://kit.fontawesome.com/b5972f7ef3.js"></script>
+
+  <script>
+  $(document).ready(function() {
+    window.onscroll = function() {
+      if (window.pageYOffset > 150) {
+        document.getElementsByClassName("section-top")[0].style.visibility = "hidden";
+      } else {
+        document.getElementsByClassName("section-top")[0].style.visibility = "visible";
+      }
+    }
+  });
+
+  // Handler that uses various data-* attributes to trigger
+  // specific actions, mimicing bootstraps attributes
+  const triggers = Array.from(document.querySelectorAll('[data-toggle="collapse"]'));
+
+  window.addEventListener('click', ev => {
+    const elm = ev.target;
+    if (triggers.includes(elm)) {
+      const selector = elm.getAttribute('data-target');
+      collapse(selector, 'toggle');
+    }
+  }, false);
+
+  const fnmap = {
+    'toggle': 'toggle',
+    'show': 'add',
+    'hide': 'remove' };
+
+  const collapse = (selector, cmd) => {
+    const targets = Array.from(document.querySelectorAll(selector));
+    targets.forEach(target => {
+      target.classList[fnmap[cmd]]('show');
+    });
+  };
+  </script>
+<style>
+.fromTheLeftNothingIsRight {
+        unicode-bidi: bidi-override;
+        direction: rtl;
+}
+</style>
+
+<script data-ad-client="ca-pub-7354973439436396" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<body>
+
+  <div class="shadow-title parallax-top-shadow">FloraCloud</div>
+
+  <div class="full-height">
+    <div class="section-title-wrap">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center parallax-fade-top">
+            <p>FloraCloud</p>
+            <h1>The best Host<br> of 2024</h1>
+            <div class="wrap">
+	            <button onclick="location.href='https://panel.floracloud.site/auth/login'" class="btn fourth hover-target">Pannel</button>
+              <button onclick="location.href=' https://discord.gg/b68XKdqbnu'" class="btn fourth hover-target">Discord</button>
+          	</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-top">
+    <h3>scroll</h3>
+  </div>
+
+  <div id="landing-page-wrap">
+  	<section id="featured-products">
+  		<div class="content-container">
+
+  			<div id="os2" class="product-row">
+  				<div class="product-image"><img src="pg.png"></div>
+  				<div class="product-text">
+  					<h2 class="product-title">FloraCloud is 24/7 hosting service. You can get minecraft server & suitable host for your discord bot in most cheapest price.</h2>
+  					<p></p>
+  				</div>
+  			</div>
+
+  	</section>
+  </div>
+
+  <footer class="page-footer font-small unique-color-dark" style="margin-top: 150px; margin-bottom: 70px;">
+
+    <div class="container text-center text-md-left mt-5">
+      <div class="row mt-3">
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <h5 class="purple" style="font-weight: 700;">Slansic</h5>
+          <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 30px; background-color: #c4c3ca;">
+          <p>FloraCloud is the best Hosting Service of 2024.</p>
+        </div>
+
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <h5 class="purple" style="font-weight: 700;">Useful links</h5>
+          <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 30px; background-color: #c4c3ca;">
+          <p>
+
+            <a href="https://discord.gg/sparkle-cafe-836860001221738527" class=" hover-target">ThunderStorm</a>
+            <p>
+            <a href="https://discord.gg/g8jpRhVeuC" class=" hover-target">Flora Cloud</a> 
+
+          </p>
+          <p>
+
+          </p>
+          <p>
+           
+          </p>
+        </div>
+
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <h5 class="purple" style="font-weight: 700;">Contact</h5>
+          <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 30px; background-color: #c4c3ca;">
+          <p>
+            <i class="fab fa-discord mr-3"></i>spidey._009 - Owner
+ </p>
+            <i class="fab fa-discord mr-3"></i> sparkle.op - Webdev</p>
+        </div>
+
+      </div>
+    </div>
+
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
